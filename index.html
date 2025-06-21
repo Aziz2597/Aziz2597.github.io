@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bella Vista Restaurant Menu</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Bella Vista Menu">
+    
     <style>
         * {
             margin: 0;
@@ -46,6 +52,33 @@
             font-size: 1.2em;
             color: #7f8c8d;
             font-style: italic;
+        }
+
+        .install-prompt {
+            background: rgba(52, 152, 219, 0.1);
+            border: 2px solid #3498db;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: none;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .install-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .install-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
         }
 
         .category-nav {
@@ -182,6 +215,24 @@
             box-shadow: 0 5px 20px rgba(52, 152, 219, 0.3);
         }
 
+        .offline-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #27ae60;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            z-index: 1000;
+            display: none;
+        }
+
+        .offline-indicator.offline {
+            background: #e74c3c;
+            display: block;
+        }
+
         .footer {
             text-align: center;
             padding: 20px;
@@ -212,14 +263,31 @@
                 text-align: center;
                 font-size: 1.6em;
             }
+
+            .install-prompt {
+                flex-direction: column;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="offline-indicator" id="offlineIndicator">
+        📱 Offline Mode - Menu Available
+    </div>
+
     <div class="container">
         <div class="header">
             <h1 class="restaurant-name">🍽️ Bella Vista</h1>
             <p class="restaurant-tagline">Authentic Italian Cuisine Since 1985</p>
+        </div>
+
+        <div class="install-prompt" id="installPrompt">
+            <div>
+                <strong>📱 Install this menu on your phone!</strong>
+                <p>Access our menu offline anytime, even without internet connection.</p>
+            </div>
+            <button class="install-btn" id="installBtn">Install App</button>
         </div>
 
         <div class="search-container">
@@ -382,19 +450,66 @@
     </div>
 
     <script>
+        // PWA Installation
+        let deferredPrompt;
+        const installPrompt = document.getElementById('installPrompt');
+        const installBtn = document.getElementById('installBtn');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installPrompt.style.display = 'flex';
+        });
+
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                deferredPrompt = null;
+                installPrompt.style.display = 'none';
+            }
+        });
+
+        // Hide install prompt after installation
+        window.addEventListener('appinstalled', () => {
+            installPrompt.style.display = 'none';
+        });
+
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(registration => {
+                    console.log('SW registered successfully');
+                })
+                .catch(error => {
+                    console.log('SW registration failed');
+                });
+        }
+
+        // Offline indicator
+        function updateOnlineStatus() {
+            const indicator = document.getElementById('offlineIndicator');
+            if (navigator.onLine) {
+                indicator.style.display = 'none';
+            } else {
+                indicator.classList.add('offline');
+                indicator.textContent = '📱 Offline Mode - Menu Available';
+            }
+        }
+
+        window.addEventListener('online', updateOnlineStatus);
+        window.addEventListener('offline', updateOnlineStatus);
+        updateOnlineStatus();
+
+        // Menu functionality
         function showCategory(categoryId) {
-            // Hide all categories
             const categories = document.querySelectorAll('.category');
             categories.forEach(cat => cat.classList.remove('active'));
             
-            // Remove active class from all nav buttons
             const navBtns = document.querySelectorAll('.nav-btn');
             navBtns.forEach(btn => btn.classList.remove('active'));
             
-            // Show selected category
             document.getElementById(categoryId).classList.add('active');
-            
-            // Add active class to clicked button
             event.target.classList.add('active');
         }
 
@@ -414,33 +529,19 @@
                 }
             });
             
-            // If searching, show all categories
             if (searchTerm) {
                 const categories = document.querySelectorAll('.category');
                 categories.forEach(cat => cat.classList.add('active'));
             } else {
-                // Reset to showing only the first category
                 const categories = document.querySelectorAll('.category');
                 categories.forEach(cat => cat.classList.remove('active'));
                 document.getElementById('appetizers').classList.add('active');
                 
-                // Reset nav buttons
                 const navBtns = document.querySelectorAll('.nav-btn');
                 navBtns.forEach(btn => btn.classList.remove('active'));
                 navBtns[0].classList.add('active');
             }
         });
-
-        // Enable offline functionality
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/sw.js').then(function(registration) {
-                    console.log('ServiceWorker registration successful');
-                }, function(err) {
-                    console.log('ServiceWorker registration failed: ', err);
-                });
-            });
-        }
     </script>
 </body>
 </html>
