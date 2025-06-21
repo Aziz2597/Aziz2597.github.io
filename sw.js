@@ -41,34 +41,31 @@ self.addEventListener('activate', function(event) {
     })
   );
 });
-
 // Fetch event - serve from cache, fallback to network
 self.addEventListener('fetch', function(event) {
-  // Only handle GET requests
-  if (event.request.method !== 'GET') {
+  const url = new URL(event.request.url);
+
+  // Only handle GET requests and HTTP/HTTPS protocols
+  if (event.request.method !== 'GET' || !url.protocol.startsWith('http')) {
     return;
   }
 
   event.respondWith(
     caches.match(event.request)
       .then(function(response) {
-        // Return cached version if available
         if (response) {
           console.log('[SW] Serving from cache:', event.request.url);
           return response;
         }
 
-        // Otherwise fetch from network
         console.log('[SW] Fetching from network:', event.request.url);
         return fetch(event.request)
           .then(function(response) {
-            // Don't cache non-successful responses
             if (!response || response.status !== 200 || response.type !== 'basic') {
               return response;
             }
 
-            // Clone the response before caching
-            var responseToCache = response.clone();
+            const responseToCache = response.clone();
             caches.open(CACHE_NAME)
               .then(function(cache) {
                 cache.put(event.request, responseToCache);
@@ -77,8 +74,7 @@ self.addEventListener('fetch', function(event) {
             return response;
           })
           .catch(function(error) {
-            console.log('[SW] Network fetch failed:', error);
-            // Return a custom offline response if needed
+            console.warn('[SW] Network fetch failed:', error);
             return new Response('Offline - Content not available', {
               status: 503,
               statusText: 'Service Unavailable',
@@ -90,6 +86,7 @@ self.addEventListener('fetch', function(event) {
       })
   );
 });
+
 
 // Background sync for future enhancements
 self.addEventListener('sync', function(event) {
