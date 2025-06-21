@@ -4,12 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bella Vista Restaurant Menu</title>
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#667eea">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="Bella Vista Menu">
-    
     <style>
         * {
             margin: 0;
@@ -22,10 +16,15 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             color: #333;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .container {
             max-width: 800px;
+            width: 100%;
             margin: 0 auto;
             padding: 20px;
         }
@@ -54,31 +53,53 @@
             font-style: italic;
         }
 
-        .install-prompt {
-            background: rgba(52, 152, 219, 0.1);
-            border: 2px solid #3498db;
-            border-radius: 15px;
-            padding: 15px;
-            margin-bottom: 20px;
-            display: none;
-            align-items: center;
-            gap: 15px;
+        .qr-scanner-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
         }
 
-        .install-btn {
+        .qr-instructions {
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            color: #2c3e50;
+        }
+
+        .qr-placeholder {
+            width: 200px;
+            height: 200px;
+            background-color: #f8f9fa;
+            border: 2px dashed #6c757d;
+            border-radius: 10px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-size: 1.2em;
+        }
+
+        .open-menu-btn {
             background: #3498db;
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 15px 30px;
             border-radius: 25px;
             cursor: pointer;
             font-weight: 600;
+            font-size: 1.1em;
             transition: all 0.3s ease;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
-        .install-btn:hover {
+        .open-menu-btn:hover {
             background: #2980b9;
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.3);
         }
 
         .category-nav {
@@ -238,6 +259,11 @@
             padding: 20px;
             color: rgba(255, 255, 255, 0.8);
             font-size: 0.9em;
+            width: 100%;
+        }
+
+        .hidden {
+            display: none;
         }
 
         @media (max-width: 768px) {
@@ -263,11 +289,6 @@
                 text-align: center;
                 font-size: 1.6em;
             }
-
-            .install-prompt {
-                flex-direction: column;
-                text-align: center;
-            }
         }
     </style>
 </head>
@@ -282,210 +303,199 @@
             <p class="restaurant-tagline">Authentic Italian Cuisine Since 1985</p>
         </div>
 
-        <div class="install-prompt" id="installPrompt">
-            <div>
-                <strong>📱 Install this menu on your phone!</strong>
-                <p>Access our menu offline anytime, even without internet connection.</p>
+        <div class="qr-scanner-container" id="scannerContainer">
+            <h2>Scan to View Our Menu</h2>
+            <p class="qr-instructions">Point your phone's camera at the QR code to instantly view our menu. No app installation required.</p>
+            <div class="qr-placeholder">
+                [QR Code Placeholder]
             </div>
-            <button class="install-btn" id="installBtn">Install App</button>
+            <p style="margin-top: 20px; font-size: 0.9em; color: #7f8c8d;">
+                <em>Tip: This menu works offline after the first access!</em>
+            </p>
+            <button class="open-menu-btn" id="openMenuBtn">View Menu Without Scanning</button>
         </div>
 
-        <div class="search-container">
-            <input type="text" class="search-input" placeholder="Search menu items..." id="searchInput">
-        </div>
+        <div id="menuContainer" class="hidden">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search menu items..." id="searchInput">
+            </div>
 
-        <div class="category-nav">
-            <button class="nav-btn active" onclick="showCategory('appetizers')">🥗 Appetizers</button>
-            <button class="nav-btn" onclick="showCategory('mains')">🍝 Main Courses</button>
-            <button class="nav-btn" onclick="showCategory('desserts')">🍰 Desserts</button>
-            <button class="nav-btn" onclick="showCategory('beverages')">🥤 Beverages</button>
-        </div>
+            <div class="category-nav">
+                <button class="nav-btn active" onclick="showCategory('appetizers')">🥗 Appetizers</button>
+                <button class="nav-btn" onclick="showCategory('mains')">🍝 Main Courses</button>
+                <button class="nav-btn" onclick="showCategory('desserts')">🍰 Desserts</button>
+                <button class="nav-btn" onclick="showCategory('beverages')">🥤 Beverages</button>
+            </div>
 
-        <div id="appetizers" class="category active">
-            <h2 class="category-title">Appetizers</h2>
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-name">Bruschetta al Pomodoro</div>
-                    <div class="item-description">Grilled bread topped with fresh tomatoes, basil, garlic, and extra virgin olive oil</div>
+            <div id="appetizers" class="category active">
+                <h2 class="category-title">Appetizers</h2>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">Bruschetta al Pomodoro</div>
+                        <div class="item-description">Grilled bread topped with fresh tomatoes, basil, garlic, and extra virgin olive oil</div>
+                    </div>
+                    <div class="item-price">$12</div>
                 </div>
-                <div class="item-price">$12</div>
-            </div>
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-name">Antipasto Misto</div>
-                    <div class="item-description">Selection of cured meats, cheeses, olives, and marinated vegetables</div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">Antipasto Misto</div>
+                        <div class="item-description">Selection of cured meats, cheeses, olives, and marinated vegetables</div>
+                    </div>
+                    <div class="item-price">$18</div>
                 </div>
-                <div class="item-price">$18</div>
-            </div>
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-name">Calamari Fritti</div>
-                    <div class="item-description">Crispy fried squid rings served with marinara sauce and lemon</div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">Calamari Fritti</div>
+                        <div class="item-description">Crispy fried squid rings served with marinara sauce and lemon</div>
+                    </div>
+                    <div class="item-price">$16</div>
                 </div>
-                <div class="item-price">$16</div>
-            </div>
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-name">Caprese Salad</div>
-                    <div class="item-description">Fresh mozzarella, tomatoes, and basil drizzled with balsamic glaze</div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">Caprese Salad</div>
+                        <div class="item-description">Fresh mozzarella, tomatoes, and basil drizzled with balsamic glaze</div>
+                    </div>
+                    <div class="item-price">$14</div>
                 </div>
-                <div class="item-price">$14</div>
             </div>
-        </div>
 
-        <div id="mains" class="category">
-            <h2 class="category-title">Main Courses</h2>
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-name">Spaghetti Carbonara</div>
-                    <div class="item-description">Classic Roman pasta with eggs, pancetta, parmesan cheese, and black pepper</div>
+            <div id="mains" class="category">
+                <h2 class="category-title">Main Courses</h2>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">Spaghetti Carbonara</div>
+                        <div class="item-description">Classic Roman pasta with eggs, pancetta, parmesan cheese, and black pepper</div>
+                    </div>
+                    <div class="item-price">$22</div>
                 </div>
-                <div class="item-price">$22</div>
-            </div>
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-name">Margherita Pizza</div>
-                    <div class="item-description">Traditional Neapolitan pizza with tomato sauce, mozzarella, and fresh basil</div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">Margherita Pizza</div>
+                        <div class="item-description">Traditional Neapolitan pizza with tomato sauce, mozzarella, and fresh basil</div>
+                    </div>
+                    <div class="item-price">$20</div>
                 </div>
-                <div class="item-price">$20</div>
-            </div>
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-name">Osso Buco alla Milanese</div>
-                    <div class="item-description">Braised veal shanks with vegetables, white wine, and broth, served with risotto</div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">Osso Buco alla Milanese</div>
+                        <div class="item-description">Braised veal shanks with vegetables, white wine, and broth, served with risotto</div>
+                    </div>
+                    <div class="item-price">$32</div>
                 </div>
-                <div class="item-price">$32</div>
-            </div>
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-name">Chicken Parmigiana</div>
-                    <div class="item-description">Breaded chicken breast topped with marinara sauce and melted mozzarella</div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">Chicken Parmigiana</div>
+                        <div class="item-description">Breaded chicken breast topped with marinara sauce and melted mozzarella</div>
+                    </div>
+                    <div class="item-price">$26</div>
                 </div>
-                <div class="item-price">$26</div>
-            </div>
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-name">Seafood Risotto</div>
-                    <div class="item-description">Creamy arborio rice with mixed seafood, white wine, and saffron</div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">Seafood Risotto</div>
+                        <div class="item-description">Creamy arborio rice with mixed seafood, white wine, and saffron</div>
+                    </div>
+                    <div class="item-price">$28</div>
                 </div>
-                <div class="item-price">$28</div>
             </div>
-        </div>
 
-        <div id="desserts" class="category">
-            <h2 class="category-title">Desserts</h2>
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-name">Tiramisu</div>
-                    <div class="item-description">Classic Italian dessert with coffee-soaked ladyfingers and mascarpone cream</div>
+            <div id="desserts" class="category">
+                <h2 class="category-title">Desserts</h2>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">Tiramisu</div>
+                        <div class="item-description">Classic Italian dessert with coffee-soaked ladyfingers and mascarpone cream</div>
+                    </div>
+                    <div class="item-price">$9</div>
                 </div>
-                <div class="item-price">$9</div>
-            </div>
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-name">Cannoli Siciliani</div>
-                    <div class="item-description">Crispy pastry shells filled with sweet ricotta and chocolate chips</div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">Cannoli Siciliani</div>
+                        <div class="item-description">Crispy pastry shells filled with sweet ricotta and chocolate chips</div>
+                    </div>
+                    <div class="item-price">$8</div>
                 </div>
-                <div class="item-price">$8</div>
-            </div>
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-name">Panna Cotta</div>
-                    <div class="item-description">Silky vanilla custard topped with berry compote</div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">Panna Cotta</div>
+                        <div class="item-description">Silky vanilla custard topped with berry compote</div>
+                    </div>
+                    <div class="item-price">$7</div>
                 </div>
-                <div class="item-price">$7</div>
-            </div>
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-name">Gelato Selection</div>
-                    <div class="item-description">Choose from vanilla, chocolate, strawberry, or pistachio (3 scoops)</div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">Gelato Selection</div>
+                        <div class="item-description">Choose from vanilla, chocolate, strawberry, or pistachio (3 scoops)</div>
+                    </div>
+                    <div class="item-price">$6</div>
                 </div>
-                <div class="item-price">$6</div>
             </div>
-        </div>
 
-        <div id="beverages" class="category">
-            <h2 class="category-title">Beverages</h2>
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-name">House Wine</div>
-                    <div class="item-description">Red or white wine by the glass</div>
+            <div id="beverages" class="category">
+                <h2 class="category-title">Beverages</h2>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">House Wine</div>
+                        <div class="item-description">Red or white wine by the glass</div>
+                    </div>
+                    <div class="item-price">$8</div>
                 </div>
-                <div class="item-price">$8</div>
-            </div>
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-name">Italian Soda</div>
-                    <div class="item-description">Sparkling water with your choice of fruit syrup</div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">Italian Soda</div>
+                        <div class="item-description">Sparkling water with your choice of fruit syrup</div>
+                    </div>
+                    <div class="item-price">$4</div>
                 </div>
-                <div class="item-price">$4</div>
-            </div>
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-name">Espresso</div>
-                    <div class="item-description">Traditional Italian coffee</div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">Espresso</div>
+                        <div class="item-description">Traditional Italian coffee</div>
+                    </div>
+                    <div class="item-price">$3</div>
                 </div>
-                <div class="item-price">$3</div>
-            </div>
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-name">Cappuccino</div>
-                    <div class="item-description">Espresso with steamed milk and foam</div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">Cappuccino</div>
+                        <div class="item-description">Espresso with steamed milk and foam</div>
+                    </div>
+                    <div class="item-price">$5</div>
                 </div>
-                <div class="item-price">$5</div>
-            </div>
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-name">San Pellegrino</div>
-                    <div class="item-description">Sparkling mineral water</div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">San Pellegrino</div>
+                        <div class="item-description">Sparkling mineral water</div>
+                    </div>
+                    <div class="item-price">$3</div>
                 </div>
-                <div class="item-price">$3</div>
             </div>
-        </div>
 
-        <div class="footer">
-            <p>📍 123 Main Street, City, State | 📞 (555) 123-4567</p>
-            <p>Visit us Tuesday - Sunday, 5:00 PM - 10:00 PM</p>
+            <div class="footer">
+                <p>📍 123 Main Street, City, State | 📞 (555) 123-4567</p>
+                <p>Visit us Tuesday - Sunday, 5:00 PM - 10:00 PM</p>
+            </div>
         </div>
     </div>
 
     <script>
-        // PWA Installation
-        let deferredPrompt;
-        const installPrompt = document.getElementById('installPrompt');
-        const installBtn = document.getElementById('installBtn');
-
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            installPrompt.style.display = 'flex';
+        // Simulate QR code scanning experience
+        const openMenuBtn = document.getElementById('openMenuBtn');
+        const scannerContainer = document.getElementById('scannerContainer');
+        const menuContainer = document.getElementById('menuContainer');
+        
+        openMenuBtn.addEventListener('click', function() {
+            scannerContainer.classList.add('hidden');
+            menuContainer.classList.remove('hidden');
+            
+            // Simulate offline storage
+            localStorage.setItem('menuAccessed', 'true');
         });
-
-        installBtn.addEventListener('click', async () => {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                const { outcome } = await deferredPrompt.userChoice;
-                deferredPrompt = null;
-                installPrompt.style.display = 'none';
-            }
-        });
-
-        // Hide install prompt after installation
-        window.addEventListener('appinstalled', () => {
-            installPrompt.style.display = 'none';
-        });
-
-        // Service Worker Registration
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/sw.js')
-                .then(registration => {
-                    console.log('SW registered successfully');
-                })
-                .catch(error => {
-                    console.log('SW registration failed');
-                });
+        
+        // Check if menu has been accessed before (for offline use)
+        if (localStorage.getItem('menuAccessed')) {
+            scannerContainer.classList.add('hidden');
+            menuContainer.classList.remove('hidden');
         }
-
+        
         // Offline indicator
         function updateOnlineStatus() {
             const indicator = document.getElementById('offlineIndicator');
@@ -496,11 +506,11 @@
                 indicator.textContent = '📱 Offline Mode - Menu Available';
             }
         }
-
+        
         window.addEventListener('online', updateOnlineStatus);
         window.addEventListener('offline', updateOnlineStatus);
         updateOnlineStatus();
-
+        
         // Menu functionality
         function showCategory(categoryId) {
             const categories = document.querySelectorAll('.category');
@@ -512,7 +522,7 @@
             document.getElementById(categoryId).classList.add('active');
             event.target.classList.add('active');
         }
-
+        
         // Search functionality
         document.getElementById('searchInput').addEventListener('input', function(e) {
             const searchTerm = e.target.value.toLowerCase();
@@ -540,6 +550,16 @@
                 const navBtns = document.querySelectorAll('.nav-btn');
                 navBtns.forEach(btn => btn.classList.remove('active'));
                 navBtns[0].classList.add('active');
+            }
+        });
+        
+        // Simulate QR code scanning
+        document.addEventListener('keydown', function(e) {
+            // Simulate QR code scan with 's' key for demonstration
+            if (e.key === 's') {
+                scannerContainer.classList.add('hidden');
+                menuContainer.classList.remove('hidden');
+                localStorage.setItem('menuAccessed', 'true');
             }
         });
     </script>
