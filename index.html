@@ -520,7 +520,8 @@
       window.addEventListener("beforeinstallprompt", (e) => {
         e.preventDefault(); // ✅ needed to show custom install UI
         deferredPrompt = e; // save the event for later use
-        instainstallPrompt.style.display = "flex";
+        installPrompt.style.display = "flex";
+
       });
 
       // Then when user clicks "Install":
