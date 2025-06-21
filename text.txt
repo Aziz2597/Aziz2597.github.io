@@ -1,0 +1,793 @@
+Aziz2597.github.io\index.html:
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="manifest" href="manifest.json" />
+    <title>Bella Vista Restaurant Menu</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        color: #333;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .header {
+        text-align: center;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .restaurant-name {
+        font-size: 2.5em;
+        font-weight: bold;
+        color: #2c3e50;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .restaurant-tagline {
+        font-size: 1.2em;
+        color: #7f8c8d;
+        font-style: italic;
+      }
+
+      .category-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        margin-bottom: 30px;
+      }
+
+      .nav-btn {
+        background: rgba(255, 255, 255, 0.9);
+        border: none;
+        padding: 12px 24px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-btn:hover,
+      .nav-btn.active {
+        background: #3498db;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(52, 152, 219, 0.3);
+      }
+
+      .category {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 25px;
+        margin-bottom: 25px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        display: none;
+        transition: all 0.3s ease;
+      }
+
+      .category.active {
+        display: block;
+        animation: fadeIn 0.5s ease-in;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .category-title {
+        font-size: 2em;
+        color: #2c3e50;
+        margin-bottom: 20px;
+        text-align: center;
+        position: relative;
+      }
+
+      .category-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+        height: 3px;
+        background: linear-gradient(45deg, #3498db, #9b59b6);
+        border-radius: 2px;
+      }
+
+      .menu-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 20px;
+        margin-bottom: 15px;
+        background: rgba(255, 255, 255, 0.7);
+        border-radius: 15px;
+        transition: all 0.3s ease;
+        border-left: 4px solid transparent;
+      }
+
+      .menu-item:hover {
+        transform: translateX(5px);
+        border-left-color: #3498db;
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .item-info {
+        flex: 1;
+        margin-right: 15px;
+      }
+
+      .item-name {
+        font-size: 1.3em;
+        font-weight: bold;
+        color: #2c3e50;
+        margin-bottom: 8px;
+      }
+
+      .item-description {
+        color: #7f8c8d;
+        line-height: 1.5;
+        font-size: 0.95em;
+      }
+
+      .item-price {
+        font-size: 1.4em;
+        font-weight: bold;
+        color: #27ae60;
+        min-width: 80px;
+        text-align: right;
+        align-self: center;
+      }
+
+      .search-container {
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .search-input {
+        width: 100%;
+        max-width: 400px;
+        padding: 15px 20px;
+        border: none;
+        border-radius: 25px;
+        font-size: 1em;
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        outline: none;
+      }
+
+      .search-input:focus {
+        box-shadow: 0 5px 20px rgba(52, 152, 219, 0.3);
+      }
+
+      .footer {
+        text-align: center;
+        padding: 20px;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.9em;
+      }
+
+      /* Add to existing styles */
+      #scanner-modal button {
+        background: #e74c3c;
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        font-size: 1.1em;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      #scanner-modal button:hover {
+        background: #c0392b;
+        transform: scale(1.05);
+      }
+      @media (max-width: 768px) {
+        .container {
+          padding: 15px;
+        }
+
+        .restaurant-name {
+          font-size: 2em;
+        }
+
+        .menu-item {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .item-info {
+          margin-right: 0;
+          margin-bottom: 10px;
+        }
+
+        .item-price {
+          text-align: center;
+          font-size: 1.6em;
+        }
+      }
+    </style>
+    <!-- head›… -->
+    <script src="https://unpkg.com/qrcode/build/qrcode.min.js"></script>
+
+    <script src="https://unpkg.com/@zxing/library@latest"></script>
+  </head>
+  <body>
+    <div
+      id="scanner-modal"
+      style="
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 1000;
+        padding: 20px;
+        text-align: center;
+      "
+    >
+      <div style="max-width: 600px; margin: 0 auto">
+        <video
+          id="scanner-video"
+          style="width: 100%; max-height: 70vh; border-radius: 10px"
+        ></video>
+        <div
+          style="margin: 20px 0; color: white; font-size: 1.2em"
+          id="scanner-result"
+        ></div>
+        <button
+          onclick="closeScanner()"
+          style="
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1em;
+            border-radius: 30px;
+            cursor: pointer;
+          "
+        >
+          Close Scanner
+        </button>
+      </div>
+    </div>
+
+    <input
+      type="file"
+      id="file-input"
+      accept="image/*"
+      capture="environment"
+      style="display: none"
+    />
+
+    <!-- Add scanner button in the header -->
+    <div class="header">
+      <h1 class="restaurant-name">🍽️ Bella Vista</h1>
+      <p class="restaurant-tagline">Authentic Italian Cuisine Since 1985</p>
+      <!-- Add this button -->
+      <button
+        onclick="openScanner()"
+        style="
+          margin-top: 15px;
+          background: #3498db;
+          color: white;
+          border: none;
+          padding: 10px 20px;
+          border-radius: 25px;
+          cursor: pointer;
+          font-weight: bold;
+        "
+      >
+        📷 Scan Barcode
+      </button>
+    </div>
+    <div id="qrcode" style="text-align: center; margin: 20px auto"></div>
+    <div class="container">
+      <div class="header">
+        <h1 class="restaurant-name">🍽️ Bella Vista</h1>
+        <p class="restaurant-tagline">Authentic Italian Cuisine Since 1985</p>
+      </div>
+
+      <div class="search-container">
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Search menu items..."
+          id="searchInput"
+        />
+      </div>
+
+      <div class="category-nav">
+        <button class="nav-btn active" onclick="showCategory('appetizers')">
+          🥗 Appetizers
+        </button>
+        <button class="nav-btn" onclick="showCategory('mains')">
+          🍝 Main Courses
+        </button>
+        <button class="nav-btn" onclick="showCategory('desserts')">
+          🍰 Desserts
+        </button>
+        <button class="nav-btn" onclick="showCategory('beverages')">
+          🥤 Beverages
+        </button>
+      </div>
+
+      <div id="appetizers" class="category active">
+        <h2 class="category-title">Appetizers</h2>
+        <div class="menu-item">
+          <div class="item-info">
+            <div class="item-name">Bruschetta al Pomodoro</div>
+            <div class="item-description">
+              Grilled bread topped with fresh tomatoes, basil, garlic, and extra
+              virgin olive oil
+            </div>
+          </div>
+          <div class="item-price">$12</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-info">
+            <div class="item-name">Antipasto Misto</div>
+            <div class="item-description">
+              Selection of cured meats, cheeses, olives, and marinated
+              vegetables
+            </div>
+          </div>
+          <div class="item-price">$18</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-info">
+            <div class="item-name">Calamari Fritti</div>
+            <div class="item-description">
+              Crispy fried squid rings served with marinara sauce and lemon
+            </div>
+          </div>
+          <div class="item-price">$16</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-info">
+            <div class="item-name">Caprese Salad</div>
+            <div class="item-description">
+              Fresh mozzarella, tomatoes, and basil drizzled with balsamic glaze
+            </div>
+          </div>
+          <div class="item-price">$14</div>
+        </div>
+      </div>
+
+      <div id="mains" class="category">
+        <h2 class="category-title">Main Courses</h2>
+        <div class="menu-item">
+          <div class="item-info">
+            <div class="item-name">Spaghetti Carbonara</div>
+            <div class="item-description">
+              Classic Roman pasta with eggs, pancetta, parmesan cheese, and
+              black pepper
+            </div>
+          </div>
+          <div class="item-price">$22</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-info">
+            <div class="item-name">Margherita Pizza</div>
+            <div class="item-description">
+              Traditional Neapolitan pizza with tomato sauce, mozzarella, and
+              fresh basil
+            </div>
+          </div>
+          <div class="item-price">$20</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-info">
+            <div class="item-name">Osso Buco alla Milanese</div>
+            <div class="item-description">
+              Braised veal shanks with vegetables, white wine, and broth, served
+              with risotto
+            </div>
+          </div>
+          <div class="item-price">$32</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-info">
+            <div class="item-name">Chicken Parmigiana</div>
+            <div class="item-description">
+              Breaded chicken breast topped with marinara sauce and melted
+              mozzarella
+            </div>
+          </div>
+          <div class="item-price">$26</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-info">
+            <div class="item-name">Seafood Risotto</div>
+            <div class="item-description">
+              Creamy arborio rice with mixed seafood, white wine, and saffron
+            </div>
+          </div>
+          <div class="item-price">$28</div>
+        </div>
+      </div>
+
+      <div id="desserts" class="category">
+        <h2 class="category-title">Desserts</h2>
+        <div class="menu-item">
+          <div class="item-info">
+            <div class="item-name">Tiramisu</div>
+            <div class="item-description">
+              Classic Italian dessert with coffee-soaked ladyfingers and
+              mascarpone cream
+            </div>
+          </div>
+          <div class="item-price">$9</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-info">
+            <div class="item-name">Cannoli Siciliani</div>
+            <div class="item-description">
+              Crispy pastry shells filled with sweet ricotta and chocolate chips
+            </div>
+          </div>
+          <div class="item-price">$8</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-info">
+            <div class="item-name">Panna Cotta</div>
+            <div class="item-description">
+              Silky vanilla custard topped with berry compote
+            </div>
+          </div>
+          <div class="item-price">$7</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-info">
+            <div class="item-name">Gelato Selection</div>
+            <div class="item-description">
+              Choose from vanilla, chocolate, strawberry, or pistachio (3
+              scoops)
+            </div>
+          </div>
+          <div class="item-price">$6</div>
+        </div>
+      </div>
+
+      <div id="beverages" class="category">
+        <h2 class="category-title">Beverages</h2>
+        <div class="menu-item">
+          <div class="item-info">
+            <div class="item-name">House Wine</div>
+            <div class="item-description">Red or white wine by the glass</div>
+          </div>
+          <div class="item-price">$8</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-info">
+            <div class="item-name">Italian Soda</div>
+            <div class="item-description">
+              Sparkling water with your choice of fruit syrup
+            </div>
+          </div>
+          <div class="item-price">$4</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-info">
+            <div class="item-name">Espresso</div>
+            <div class="item-description">Traditional Italian coffee</div>
+          </div>
+          <div class="item-price">$3</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-info">
+            <div class="item-name">Cappuccino</div>
+            <div class="item-description">
+              Espresso with steamed milk and foam
+            </div>
+          </div>
+          <div class="item-price">$5</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-info">
+            <div class="item-name">San Pellegrino</div>
+            <div class="item-description">Sparkling mineral water</div>
+          </div>
+          <div class="item-price">$3</div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <p>📍 123 Main Street, City, State | 📞 (555) 123-4567</p>
+        <p>Visit us Tuesday - Sunday, 5:00 PM - 10:00 PM</p>
+      </div>
+    </div>
+
+    <script>
+      // Barcode Scanner Functions
+      let codeReader = null;
+      let isScanning = false;
+
+      function isIOS() {
+        return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      }
+      function openScanner() {
+        if (isIOS()) {
+          // trigger the photo‑picker/camera on iOS
+          document.getElementById("file-input").click();
+          return;
+        }
+        document.getElementById("scanner-modal").style.display = "block";
+        document.getElementById("scanner-result").textContent =
+          "Starting scanner...";
+
+        if (!codeReader) {
+          codeReader = new ZXing.BrowserMultiFormatReader();
+        }
+
+        codeReader
+          .decodeFromVideoDevice(null, "scanner-video", (result, err) => {
+            if (result) {
+              document.getElementById(
+                "scanner-result"
+              ).textContent = `Scanned: ${result.text}`;
+
+              // Auto-close after 2 seconds
+              setTimeout(() => {
+                closeScanner();
+                searchByBarcode(result.text);
+              }, 2000);
+            }
+
+            if (err && !(err instanceof ZXing.NotFoundException)) {
+              console.error(err);
+              document.getElementById("scanner-result").textContent =
+                "Error: " + err.message;
+            }
+          })
+          .then(() => {
+            isScanning = true;
+          })
+          .catch((err) => {
+            console.error(err);
+            document.getElementById("scanner-result").textContent =
+              "Cannot access camera. Please check permissions.";
+          });
+      }
+
+      function closeScanner() {
+        if (codeReader && isScanning) {
+          codeReader.reset();
+          isScanning = false;
+        }
+        document.getElementById("scanner-modal").style.display = "none";
+      }
+
+      function searchByBarcode(code) {
+        // In a real app, this would match barcodes to menu items
+        // For demo, we'll search for items containing the last character
+
+        // if it’s a URL, redirect into your PWA
+        if (/^https?:\/\//.test(code)) {
+          window.location.href = code;
+          return;
+        }
+        // otherwise fall back to in‑menu search
+        const lastChar = code.slice(-1).toLowerCase();
+        document.getElementById("searchInput").value = lastChar;
+        // Show all categories during search
+        const categories = document.querySelectorAll(".category");
+        categories.forEach((cat) => cat.classList.add("active"));
+      }
+      function showCategory(categoryId) {
+        // Hide all categories
+        const categories = document.querySelectorAll(".category");
+        categories.forEach((cat) => cat.classList.remove("active"));
+
+        // Remove active class from all nav buttons
+        const navBtns = document.querySelectorAll(".nav-btn");
+        navBtns.forEach((btn) => btn.classList.remove("active"));
+
+        // Show selected category
+        document.getElementById(categoryId).classList.add("active");
+
+        // Add active class to clicked button
+        event.target.classList.add("active");
+      }
+
+      // Search functionality
+      document
+        .getElementById("file-input")
+        .addEventListener("change", async function (e) {
+          const file = e.target.files[0];
+          if (!file) return;
+          const imgURL = URL.createObjectURL(file);
+          try {
+            const result =
+              await new ZXing.BrowserMultiFormatReader().decodeFromImage(
+                undefined,
+                imgURL
+              );
+            searchByBarcode(result.text);
+          } catch (err) {
+            console.error("Image‑scan failed:", err);
+            alert("Could not read barcode from photo.");
+          }
+          // cleanup
+          URL.revokeObjectURL(imgURL);
+          e.target.value = "";
+        });
+
+      document
+        .getElementById("searchInput")
+        .addEventListener("input", function (e) {
+          const searchTerm = e.target.value.toLowerCase();
+          const menuItems = document.querySelectorAll(".menu-item");
+
+          menuItems.forEach((item) => {
+            const itemName = item
+              .querySelector(".item-name")
+              .textContent.toLowerCase();
+            const itemDescription = item
+              .querySelector(".item-description")
+              .textContent.toLowerCase();
+
+            if (
+              itemName.includes(searchTerm) ||
+              itemDescription.includes(searchTerm)
+            ) {
+              item.style.display = "flex";
+            } else {
+              item.style.display = "none";
+            }
+          });
+
+          // If searching, show all categories
+          if (searchTerm) {
+            const categories = document.querySelectorAll(".category");
+            categories.forEach((cat) => cat.classList.add("active"));
+          } else {
+            // Reset to showing only the first category
+            const categories = document.querySelectorAll(".category");
+            categories.forEach((cat) => cat.classList.remove("active"));
+            document.getElementById("appetizers").classList.add("active");
+
+            // Reset nav buttons
+            const navBtns = document.querySelectorAll(".nav-btn");
+            navBtns.forEach((btn) => btn.classList.remove("active"));
+            navBtns[0].classList.add("active");
+          }
+        });
+
+      // Enable offline functionality
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("/sw.js").then(
+            function (registration) {
+              console.log("ServiceWorker registration successful");
+            },
+            function (err) {
+              console.log("ServiceWorker registration failed: ", err);
+            }
+          );
+        });
+      }
+      // after all your other functions, append:
+      window.addEventListener("load", () => {
+        const qrContainer = document.getElementById("qrcode");
+        const url = window.location.href;
+        QRCode.toCanvas(url, { width: 180 }, (err, canvas) => {
+          if (err) console.error(err);
+          else qrContainer.appendChild(canvas);
+        });
+      });
+    </script>
+  </body>
+</html>
+
+Aziz2597.github.io\manifest.json:
+{
+  "name": "Bella Vista Restaurant Menu",
+  "short_name": "Menu",
+  "description": "Restaurant Menu",
+  "scope": "/",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#667eea",
+  "theme_color": "#667eea",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
+
+Aziz2597.github.io\sw.js:
+const CACHE_NAME = 'restaurant-menu-v2'; // Update version
+const urlsToCache = [
+  '/',
+  '/index.html',
+  '/icon-192.png',
+  'https://unpkg.com/@zxing/library@latest' // Cache the scanner library
+];
+
+self.addEventListener('install', function(event) {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(function(cache) {
+        return cache.addAll(urlsToCache);
+      })
+  );
+});
+
+self.addEventListener('fetch', function(event) {
+  event.respondWith(
+    caches.match(event.request)
+      .then(function(response) {
+        // Return cached version if found
+        if (response) {
+          return response;
+        }
+        
+        // For ZXing library, cache new requests
+        if (event.request.url.includes('@zxing/library')) {
+          return fetch(event.request).then(response => {
+            return caches.open(CACHE_NAME).then(cache => {
+              cache.put(event.request, response.clone());
+              return response;
+            });
+          });
+        }
+        
+        return fetch(event.request);
+      })
+  );
+});
+
+// Clean up old caches
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.filter(name => name !== CACHE_NAME)
+          .map(name => caches.delete(name))
+      );
+    })
+  );
+});
+
+is the project 100% accurately achieves the goal:
+I need to develop a system for a restaurant menu accessible via a barcode scan on a mobile phone. Upon scanning, an offline user interface (UI) should open on the phone, displaying the restaurant's menu. The menu should be organized into categories, with each category listing dishes and their corresponding prices.
+
+if not, give detailed further steps

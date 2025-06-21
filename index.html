@@ -4,12 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bella Vista Restaurant Menu</title>
-    <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiQmVsbGEgVmlzdGEgUmVzdGF1cmFudCBNZW51Iiwic2hvcnRfbmFtZSI6IkJlbGxhIFZpc3RhIiwiZGVzY3JpcHRpb24iOiJBdXRoZW50aWMgSXRhbGlhbiBDdWlzaW5lIE1lbnUgLSBBY2Nlc3Mgb2ZmbGluZSBhbnl0aW1lIiwic2NvcGUiOiIvIiwic3RhcnRfdXJsIjoiLyIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwib3JpZW50YXRpb24iOiJwb3J0cmFpdC1wcmltYXJ5IiwiYmFja2dyb3VuZF9jb2xvciI6IiM2NjdlZWEiLCJ0aGVtZV9jb2xvciI6IiM2NjdlZWEiLCJjYXRlZ29yaWVzIjpbImZvb2QiLCJyZXN0YXVyYW50IiwiZGluaW5nIl0sImxhbmciOiJlbiIsImRpciI6Imx0ciIsImljb25zIjpbeyJzcmMiOiJkYXRhOmltYWdlL3N2Zyt4bWwsJTNDc3ZnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zycgdmlld0JveD0nMCAwIDE5MiAxOTInJTNFJTNDZGVmcyUzRSUzQ3N0eWxlJTNFLmNscy0xe2ZpbGw6JTIzNjY3ZWVhO30uY2xzLTJ7ZmlsbDolMjNmZmY7fSUzQy9zdHlsZSUzRSUzQy9kZWZzJTNFJTNDY2lyY2xlJTIwY2xhc3M9J2Nscy0xJyUyMGN4PSc5NiclMjBjeT0nOTYnJTIwcj0nOTYnLyUzRSUzQ3BhdGglMjBjbGFzcz0nY2xzLTInJTIwZD0nTTEzMCw3MEg2MmE2LDYlMjAwLDAlMjAwLTYsNnY0MGE2LDYlMjAwLDAlMjAwLDYlMkM2aDY4YTZBNiwwLDAsMCwwLDEzNiwxMTZWNzZBNiw2LDAsMCwwLDEzMCw3MFpNMTI0LDExMEg2OFY4Mmg1NlonLyUzRSUzQ3BhdGglMjBjbGFzcz0nY2xzLTInJTIwZD0nTTk2LDk1YTMsMyUyMDAlMjAwLDAtMywzdjhBMywzJTIwMCwwLDAsOTYsMTEyVjk4QTMsMyUyMDAlMjAwLDAsMCw5Niw5NVonLyUzRSUzQ3BhdGglMjBjbGFzcz0nY2xzLTInJTIwZD0nTTgwLDk1YTMsMyUyMDAlMjAwLDAtMywzdjhBMywzJTIwMCwwLDAsODAsMTEyVjk4QTMsMyUyMDAlMjAwLDAsMCw4MCw5NVonLyUzRSUzQ3BhdGglMjBjbGFzcz0nY2xzLTInJTIwZD0nTTExMiw5NWEzLDMlMjAwLDAsMC0zLDN2OEEzLDMlMjAwLDAsMCwxMTIsMTEyVjk4QTMsMyUyMDAlMjAwLDAsMCwxMTIsOTVaJy8lM0UlM0Mvc3ZnJTNFIiwic2l6ZXMiOiIxOTJ4MTkyIiwidHlwZSI6ImltYWdlL3N2Zyt4bWwiLCJwdXJwb3NlIjoiYW55IG1hc2thYmxlIn0seyJzcmMiOiJkYXRhOmltYWdlL3N2Zyt4bWwsJTNDc3ZnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zycgdmlld0JveD0nMCAwIDUxMiA1MTInJTNFJTNDZGVmcyUzRSUzQ3N0eWxlJTNFLmNscy0xe2ZpbGw6JTIzNjY3ZWVhO30uY2xzLTJ7ZmlsbDolMjNmZmY7fSUzQy9zdHlsZSUzRSUzQy9kZWZzJTNFJTNDY2lyY2xlJTIwY2xhc3M9J2Nscy0xJyUyMGN4PScyNTYnJTIwY3k9JzI1NiclMjByPScyNTYnLyUzRSUzQ3BhdGglMjBjbGFzcz0nY2xzLTInJTIwZD0nTTM0Ni42NywxODYuNjdIMTY1LjMzYTE2LDE2LDAsMCwwLTE2LDE2djEwNi42NmExNiwxNiwwLDAsMCwxNiwxNkgzNDYuNjdhMTYsMTYsMCwwLDAsMTYtMTZWMjAyLjY3QTEsMTYsMCwwLDAsMzQ2LjY3LDE4Ni42N1pNMzMwLjY3LDI5My4zM0gxODEuMzNWMjE4LjY3SDMzMC42N1onLyUzRSUzQ3BhdGglMjBjbGFzcz0nY2xzLTInJTIwZD0nTTI1NiwyNTMuMzNhOCw4LDAsMCwwLTgsOHYyMS4zNGE4LDgsMCwwLDAsMTYsMFYyNjEuMzNBOCw4LDAsMCwwLDI1NiwyNTMuMzNaJy8lM0UlM0NwYXRoJTIwY2xhc3M9J2Nscy0yJyUyMGQ9J00yMTMuMzMsMjUzLjMzYTgsOCUyMDAlMjAwLDAtOCw4djIxLjM0YTgsOCUyMDAlMjAwLDAsMCwxNiwwVjI2MS4zM0E4LDglMjAwLDAsMCwyMTMuMzMsMjUzLjMzWicvJTNFJTNDcGF0aCUyMGNsYXNzPSdjbHMtMiclMjBkPSdNMjk4LjY3LDI1My4zM2E4LDglMjAwLDAsMC04LDh2MjEuMzRhOCw4JTIwMCwwLDAsMTYsMFYyNjEuMzNBOCw4JTIwMCwwLDAsMjk4LjY3LDI1My4zM1onLyUzRSUzQy9zdmclM0UiLCJzaXplcyI6IjUxMng1MTIiLCJ0eXBlIjoiaW1hZ2Uvc3ZnK3htbCIsInB1cnBvc2UiOiJhbnkgbWFza2FibGUifV19">
-    <meta name="theme-color" content="#667eea">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="Bella Vista Menu">
-    
     <style>
         * {
             margin: 0;
@@ -23,10 +17,14 @@
             min-height: 100vh;
             color: #333;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .container {
             max-width: 800px;
+            width: 100%;
             margin: 0 auto;
             padding: 20px;
         }
@@ -55,55 +53,53 @@
             font-style: italic;
         }
 
-        .qr-instructions {
-            text-align: center;
+        .qr-scanner-container {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
-            padding: 25px;
-            margin-bottom: 25px;
+            padding: 30px;
+            margin-bottom: 30px;
+            text-align: center;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
         }
 
-        .qr-container {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0;
+        .qr-instructions {
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            color: #2c3e50;
         }
 
-        .qr-code {
+        .qr-placeholder {
             width: 200px;
             height: 200px;
-            background-color: #fff;
-            padding: 10px;
+            background-color: #f8f9fa;
+            border: 2px dashed #6c757d;
             border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .install-prompt {
-            background: rgba(52, 152, 219, 0.1);
-            border: 2px solid #3498db;
-            border-radius: 15px;
-            padding: 15px;
-            margin: 20px 0;
+            margin: 0 auto;
             display: flex;
             align-items: center;
-            gap: 15px;
+            justify-content: center;
+            color: #6c757d;
+            font-size: 1.2em;
         }
 
-        .install-btn {
+        .open-menu-btn {
             background: #3498db;
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 15px 30px;
             border-radius: 25px;
             cursor: pointer;
             font-weight: 600;
+            font-size: 1.1em;
             transition: all 0.3s ease;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
-        .install-btn:hover {
+        .open-menu-btn:hover {
             background: #2980b9;
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.3);
         }
 
         .category-nav {
@@ -263,6 +259,11 @@
             padding: 20px;
             color: rgba(255, 255, 255, 0.8);
             font-size: 0.9em;
+            width: 100%;
+        }
+
+        .hidden {
+            display: none;
         }
 
         @media (max-width: 768px) {
@@ -288,16 +289,6 @@
                 text-align: center;
                 font-size: 1.6em;
             }
-
-            .install-prompt {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .qr-code {
-                width: 150px;
-                height: 150px;
-            }
         }
     </style>
 </head>
@@ -312,348 +303,199 @@
             <p class="restaurant-tagline">Authentic Italian Cuisine Since 1985</p>
         </div>
 
-        <div class="qr-instructions">
-            <h2>Scan This QR Code to Access Our Menu</h2>
-            <p>Point your phone's camera at the QR code to instantly view our menu. No internet required after first scan!</p>
-            
-            <div class="qr-container">
-                <div class="qr-code" id="qrCode">
-                    <!-- QR code will be generated here -->
-                </div>
+        <div class="qr-scanner-container" id="scannerContainer">
+            <h2>Scan to View Our Menu</h2>
+            <p class="qr-instructions">Point your phone's camera at the QR code to instantly view our menu. No app installation required.</p>
+            <div class="qr-placeholder">
+                [QR Code Placeholder]
             </div>
-            
-            <p><em>Tip: Save this menu to your home screen for quick access!</em></p>
+            <p style="margin-top: 20px; font-size: 0.9em; color: #7f8c8d;">
+                <em>Tip: This menu works offline after the first access!</em>
+            </p>
+            <button class="open-menu-btn" id="openMenuBtn">View Menu Without Scanning</button>
         </div>
 
-        <div class="install-prompt" id="installPrompt">
-            <div>
-                <strong>📱 Install this menu on your phone!</strong>
-                <p>Access our menu offline anytime, even without internet connection.</p>
+        <div id="menuContainer" class="hidden">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search menu items..." id="searchInput">
             </div>
-            <button class="install-btn" id="installBtn">Install App</button>
-        </div>
 
-        <div class="search-container">
-            <input type="text" class="search-input" placeholder="Search menu items..." id="searchInput">
-        </div>
+            <div class="category-nav">
+                <button class="nav-btn active" onclick="showCategory('appetizers')">🥗 Appetizers</button>
+                <button class="nav-btn" onclick="showCategory('mains')">🍝 Main Courses</button>
+                <button class="nav-btn" onclick="showCategory('desserts')">🍰 Desserts</button>
+                <button class="nav-btn" onclick="showCategory('beverages')">🥤 Beverages</button>
+            </div>
 
-        <div class="category-nav">
-            <button class="nav-btn active" onclick="showCategory('appetizers')">🥗 Appetizers</button>
-            <button class="nav-btn" onclick="showCategory('mains')">🍝 Main Courses</button>
-            <button class="nav-btn" onclick="showCategory('desserts')">🍰 Desserts</button>
-            <button class="nav-btn" onclick="showCategory('beverages')">🥤 Beverages</button>
-        </div>
+            <div id="appetizers" class="category active">
+                <h2 class="category-title">Appetizers</h2>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">Bruschetta al Pomodoro</div>
+                        <div class="item-description">Grilled bread topped with fresh tomatoes, basil, garlic, and extra virgin olive oil</div>
+                    </div>
+                    <div class="item-price">$12</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">Antipasto Misto</div>
+                        <div class="item-description">Selection of cured meats, cheeses, olives, and marinated vegetables</div>
+                    </div>
+                    <div class="item-price">$18</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">Calamari Fritti</div>
+                        <div class="item-description">Crispy fried squid rings served with marinara sauce and lemon</div>
+                    </div>
+                    <div class="item-price">$16</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">Caprese Salad</div>
+                        <div class="item-description">Fresh mozzarella, tomatoes, and basil drizzled with balsamic glaze</div>
+                    </div>
+                    <div class="item-price">$14</div>
+                </div>
+            </div>
 
-        <div id="appetizers" class="category active">
-            <h2 class="category-title">Appetizers</h2>
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-name">Bruschetta al Pomodoro</div>
-                    <div class="item-description">Grilled bread topped with fresh tomatoes, basil, garlic, and extra virgin olive oil</div>
+            <div id="mains" class="category">
+                <h2 class="category-title">Main Courses</h2>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">Spaghetti Carbonara</div>
+                        <div class="item-description">Classic Roman pasta with eggs, pancetta, parmesan cheese, and black pepper</div>
+                    </div>
+                    <div class="item-price">$22</div>
                 </div>
-                <div class="item-price">$12</div>
-            </div>
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-name">Antipasto Misto</div>
-                    <div class="item-description">Selection of cured meats, cheeses, olives, and marinated vegetables</div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">Margherita Pizza</div>
+                        <div class="item-description">Traditional Neapolitan pizza with tomato sauce, mozzarella, and fresh basil</div>
+                    </div>
+                    <div class="item-price">$20</div>
                 </div>
-                <div class="item-price">$18</div>
-            </div>
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-name">Calamari Fritti</div>
-                    <div class="item-description">Crispy fried squid rings served with marinara sauce and lemon</div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">Osso Buco alla Milanese</div>
+                        <div class="item-description">Braised veal shanks with vegetables, white wine, and broth, served with risotto</div>
+                    </div>
+                    <div class="item-price">$32</div>
                 </div>
-                <div class="item-price">$16</div>
-            </div>
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-name">Caprese Salad</div>
-                    <div class="item-description">Fresh mozzarella, tomatoes, and basil drizzled with balsamic glaze</div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">Chicken Parmigiana</div>
+                        <div class="item-description">Breaded chicken breast topped with marinara sauce and melted mozzarella</div>
+                    </div>
+                    <div class="item-price">$26</div>
                 </div>
-                <div class="item-price">$14</div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">Seafood Risotto</div>
+                        <div class="item-description">Creamy arborio rice with mixed seafood, white wine, and saffron</div>
+                    </div>
+                    <div class="item-price">$28</div>
+                </div>
             </div>
-        </div>
 
-        <div id="mains" class="category">
-            <h2 class="category-title">Main Courses</h2>
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-name">Spaghetti Carbonara</div>
-                    <div class="item-description">Classic Roman pasta with eggs, pancetta, parmesan cheese, and black pepper</div>
+            <div id="desserts" class="category">
+                <h2 class="category-title">Desserts</h2>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">Tiramisu</div>
+                        <div class="item-description">Classic Italian dessert with coffee-soaked ladyfingers and mascarpone cream</div>
+                    </div>
+                    <div class="item-price">$9</div>
                 </div>
-                <div class="item-price">$22</div>
-            </div>
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-name">Margherita Pizza</div>
-                    <div class="item-description">Traditional Neapolitan pizza with tomato sauce, mozzarella, and fresh basil</div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">Cannoli Siciliani</div>
+                        <div class="item-description">Crispy pastry shells filled with sweet ricotta and chocolate chips</div>
+                    </div>
+                    <div class="item-price">$8</div>
                 </div>
-                <div class="item-price">$20</div>
-            </div>
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-name">Osso Buco alla Milanese</div>
-                    <div class="item-description">Braised veal shanks with vegetables, white wine, and broth, served with risotto</div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">Panna Cotta</div>
+                        <div class="item-description">Silky vanilla custard topped with berry compote</div>
+                    </div>
+                    <div class="item-price">$7</div>
                 </div>
-                <div class="item-price">$32</div>
-            </div>
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-name">Chicken Parmigiana</div>
-                    <div class="item-description">Breaded chicken breast topped with marinara sauce and melted mozzarella</div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">Gelato Selection</div>
+                        <div class="item-description">Choose from vanilla, chocolate, strawberry, or pistachio (3 scoops)</div>
+                    </div>
+                    <div class="item-price">$6</div>
                 </div>
-                <div class="item-price">$26</div>
             </div>
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-name">Seafood Risotto</div>
-                    <div class="item-description">Creamy arborio rice with mixed seafood, white wine, and saffron</div>
-                </div>
-                <div class="item-price">$28</div>
-            </div>
-        </div>
 
-        <div id="desserts" class="category">
-            <h2 class="category-title">Desserts</h2>
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-name">Tiramisu</div>
-                    <div class="item-description">Classic Italian dessert with coffee-soaked ladyfingers and mascarpone cream</div>
+            <div id="beverages" class="category">
+                <h2 class="category-title">Beverages</h2>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">House Wine</div>
+                        <div class="item-description">Red or white wine by the glass</div>
+                    </div>
+                    <div class="item-price">$8</div>
                 </div>
-                <div class="item-price">$9</div>
-            </div>
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-name">Cannoli Siciliani</div>
-                    <div class="item-description">Crispy pastry shells filled with sweet ricotta and chocolate chips</div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">Italian Soda</div>
+                        <div class="item-description">Sparkling water with your choice of fruit syrup</div>
+                    </div>
+                    <div class="item-price">$4</div>
                 </div>
-                <div class="item-price">$8</div>
-            </div>
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-name">Panna Cotta</div>
-                    <div class="item-description">Silky vanilla custard topped with berry compote</div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">Espresso</div>
+                        <div class="item-description">Traditional Italian coffee</div>
+                    </div>
+                    <div class="item-price">$3</div>
                 </div>
-                <div class="item-price">$7</div>
-            </div>
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-name">Gelato Selection</div>
-                    <div class="item-description">Choose from vanilla, chocolate, strawberry, or pistachio (3 scoops)</div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">Cappuccino</div>
+                        <div class="item-description">Espresso with steamed milk and foam</div>
+                    </div>
+                    <div class="item-price">$5</div>
                 </div>
-                <div class="item-price">$6</div>
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">San Pellegrino</div>
+                        <div class="item-description">Sparkling mineral water</div>
+                    </div>
+                    <div class="item-price">$3</div>
+                </div>
             </div>
-        </div>
 
-        <div id="beverages" class="category">
-            <h2 class="category-title">Beverages</h2>
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-name">House Wine</div>
-                    <div class="item-description">Red or white wine by the glass</div>
-                </div>
-                <div class="item-price">$8</div>
+            <div class="footer">
+                <p>📍 123 Main Street, City, State | 📞 (555) 123-4567</p>
+                <p>Visit us Tuesday - Sunday, 5:00 PM - 10:00 PM</p>
             </div>
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-name">Italian Soda</div>
-                    <div class="item-description">Sparkling water with your choice of fruit syrup</div>
-                </div>
-                <div class="item-price">$4</div>
-            </div>
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-name">Espresso</div>
-                    <div class="item-description">Traditional Italian coffee</div>
-                </div>
-                <div class="item-price">$3</div>
-            </div>
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-name">Cappuccino</div>
-                    <div class="item-description">Espresso with steamed milk and foam</div>
-                </div>
-                <div class="item-price">$5</div>
-            </div>
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-name">San Pellegrino</div>
-                    <div class="item-description">Sparkling mineral water</div>
-                </div>
-                <div class="item-price">$3</div>
-            </div>
-        </div>
-
-        <div class="footer">
-            <p>📍 123 Main Street, City, State | 📞 (555) 123-4567</p>
-            <p>Visit us Tuesday - Sunday, 5:00 PM - 10:00 PM</p>
         </div>
     </div>
 
     <script>
-        // QR Code Generation
-        function generateQRCode() {
-            const qrContainer = document.getElementById('qrCode');
-            qrContainer.innerHTML = '';
+        // Simulate QR code scanning experience
+        const openMenuBtn = document.getElementById('openMenuBtn');
+        const scannerContainer = document.getElementById('scannerContainer');
+        const menuContainer = document.getElementById('menuContainer');
+        
+        openMenuBtn.addEventListener('click', function() {
+            scannerContainer.classList.add('hidden');
+            menuContainer.classList.remove('hidden');
             
-            // Create canvas for QR code
-            const canvas = document.createElement('canvas');
-            canvas.width = 200;
-            canvas.height = 200;
-            const ctx = canvas.getContext('2d');
-            
-            // Draw QR code pattern
-            ctx.fillStyle = '#000';
-            
-            // Position markers
-            ctx.fillRect(20, 20, 40, 40);
-            ctx.fillRect(140, 20, 40, 40);
-            ctx.fillRect(20, 140, 40, 40);
-            
-            // Alignment pattern
-            ctx.fillRect(80, 80, 40, 40);
-            ctx.clearRect(85, 85, 30, 30);
-            ctx.fillRect(90, 90, 20, 20);
-            
-            // Timing patterns
-            for(let i = 25; i <= 175; i += 10) {
-                ctx.fillRect(95, i, 10, 5);
-                ctx.fillRect(i, 95, 5, 10);
-            }
-            
-            // Data pattern (simplified)
-            for(let i = 0; i < 10; i++) {
-                const x = 30 + Math.floor(Math.random() * 140);
-                const y = 30 + Math.floor(Math.random() * 140);
-                ctx.fillRect(x, y, 5, 5);
-            }
-            
-            qrContainer.appendChild(canvas);
-            
-            // Add "Scan Me" text
-            const scanText = document.createElement('div');
-            scanText.textContent = 'SCAN ME';
-            scanText.style.textAlign = 'center';
-            scanText.style.fontWeight = 'bold';
-            scanText.style.marginTop = '10px';
-            scanText.style.color = '#2c3e50';
-            qrContainer.appendChild(scanText);
+            // Simulate offline storage
+            localStorage.setItem('menuAccessed', 'true');
+        });
+        
+        // Check if menu has been accessed before (for offline use)
+        if (localStorage.getItem('menuAccessed')) {
+            scannerContainer.classList.add('hidden');
+            menuContainer.classList.remove('hidden');
         }
         
-        // PWA Installation
-        let deferredPrompt;
-        const installPrompt = document.getElementById('installPrompt');
-        const installBtn = document.getElementById('installBtn');
-
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            installPrompt.style.display = 'flex';
-        });
-
-        installBtn.addEventListener('click', async () => {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                const { outcome } = await deferredPrompt.userChoice;
-                deferredPrompt = null;
-                installPrompt.style.display = 'none';
-            }
-        });
-
-        // Hide install prompt after installation
-        window.addEventListener('appinstalled', () => {
-            installPrompt.style.display = 'none';
-        });
-
-        // Service Worker Registration
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('data:application/javascript;base64,' + btoa(`
-                const CACHE_NAME = 'bella-vista-menu-v1.2';
-                const urlsToCache = [
-                    '/',
-                    '/index.html',
-                    '/manifest.json'
-                ];
-
-                self.addEventListener('install', function(event) {
-                    console.log('[SW] Install event');
-                    event.waitUntil(
-                        caches.open(CACHE_NAME)
-                            .then(function(cache) {
-                                console.log('[SW] Caching resources');
-                                return cache.addAll(urlsToCache);
-                            })
-                    );
-                });
-
-                self.addEventListener('activate', function(event) {
-                    console.log('[SW] Activate event');
-                    event.waitUntil(
-                        caches.keys().then(function(cacheNames) {
-                            return Promise.all(
-                                cacheNames.map(function(cacheName) {
-                                    if (cacheName !== CACHE_NAME) {
-                                        console.log('[SW] Deleting old cache:', cacheName);
-                                        return caches.delete(cacheName);
-                                    }
-                                })
-                            );
-                        })
-                    );
-                });
-
-                self.addEventListener('fetch', function(event) {
-                    if (event.request.method !== 'GET') {
-                        return;
-                    }
-
-                    event.respondWith(
-                        caches.match(event.request)
-                            .then(function(response) {
-                                if (response) {
-                                    console.log('[SW] Serving from cache:', event.request.url);
-                                    return response;
-                                }
-
-                                console.log('[SW] Fetching from network:', event.request.url);
-                                return fetch(event.request)
-                                    .then(function(response) {
-                                        if (!response || response.status !== 200 || response.type !== 'basic') {
-                                            return response;
-                                        }
-
-                                        var responseToCache = response.clone();
-                                        caches.open(CACHE_NAME)
-                                            .then(function(cache) {
-                                                cache.put(event.request, responseToCache);
-                                            });
-
-                                        return response;
-                                    })
-                                    .catch(function(error) {
-                                        console.log('[SW] Network fetch failed:', error);
-                                        return new Response('Offline - Content not available', {
-                                            status: 503,
-                                            statusText: 'Service Unavailable',
-                                            headers: new Headers({
-                                                'Content-Type': 'text/plain'
-                                            })
-                                        });
-                                    });
-                            })
-                    );
-                });
-            `))
-            .then(registration => {
-                console.log('SW registered successfully');
-            })
-            .catch(error => {
-                console.log('SW registration failed:', error);
-            });
-        }
-
         // Offline indicator
         function updateOnlineStatus() {
             const indicator = document.getElementById('offlineIndicator');
@@ -664,11 +506,11 @@
                 indicator.textContent = '📱 Offline Mode - Menu Available';
             }
         }
-
+        
         window.addEventListener('online', updateOnlineStatus);
         window.addEventListener('offline', updateOnlineStatus);
         updateOnlineStatus();
-
+        
         // Menu functionality
         function showCategory(categoryId) {
             const categories = document.querySelectorAll('.category');
@@ -680,7 +522,7 @@
             document.getElementById(categoryId).classList.add('active');
             event.target.classList.add('active');
         }
-
+        
         // Search functionality
         document.getElementById('searchInput').addEventListener('input', function(e) {
             const searchTerm = e.target.value.toLowerCase();
@@ -710,11 +552,16 @@
                 navBtns[0].classList.add('active');
             }
         });
-
-        // Generate QR code on page load
-        window.onload = function() {
-            generateQRCode();
-        };
+        
+        // Simulate QR code scanning
+        document.addEventListener('keydown', function(e) {
+            // Simulate QR code scan with 's' key for demonstration
+            if (e.key === 's') {
+                scannerContainer.classList.add('hidden');
+                menuContainer.classList.remove('hidden');
+                localStorage.setItem('menuAccessed', 'true');
+            }
+        });
     </script>
 </body>
 </html>
