@@ -57,21 +57,6 @@
         font-style: italic;
       }
 
-      .menu-header {
-        display: flex;
-        justify-content: space-between;
-        font-weight: bold;
-        font-size: 0.95rem;
-        border-bottom: 2px solid var(--divider);
-        padding-bottom: 0.4rem;
-        margin-bottom: 0.6rem;
-        color: var(--brand-green);
-      }
-
-      .menu-section {
-        margin-bottom: 2rem;
-      }
-
       h1 {
         margin: 0 0 1rem;
         font-size: 1.6rem;
@@ -111,6 +96,23 @@
         min-height: 150px;
       }
 
+      .menu-header,
+      li {
+        display: grid;
+        grid-template-columns: 1.7fr 1fr 1fr 1.5fr;
+        gap: 0.6rem;
+        align-items: center;
+        font-size: 0.9rem;
+      }
+
+      .menu-header {
+        font-weight: bold;
+        color: var(--brand-green);
+        padding-bottom: 0.4rem;
+        border-bottom: 2px solid var(--divider);
+        margin-bottom: 0.6rem;
+      }
+
       ul {
         list-style: none;
         padding-left: 0;
@@ -118,9 +120,7 @@
       }
 
       li {
-        display: flex;
-        justify-content: space-between;
-        padding: 0.5rem 0;
+        padding: 0.4rem 0;
         border-bottom: 1px solid var(--divider);
       }
 
@@ -128,8 +128,17 @@
         border-bottom: none;
       }
 
-      li strong {
+      .col-name {
         font-weight: 600;
+      }
+
+      @media (max-width: 480px) {
+        .menu-header,
+        li {
+          grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+          font-size: 0.85rem;
+          gap: 0.4rem;
+        }
       }
     </style>
   </head>
@@ -139,7 +148,7 @@
     </header>
     <main>
       <div class="menu-wrapper">
-        <h1>Menu</h1>
+        <h1>Menu / القائمة</h1>
         <div class="tabs" id="menu-tabs"></div>
         <div class="content" id="menu-content">Loading…</div>
       </div>
@@ -151,11 +160,11 @@
       const tabsContainer = document.getElementById("menu-tabs");
 
       const displayNames = {
-        morning: "Morning (Fajr - Zuhr)",
-        maincourse: "Main Course (After Zuhr - 11.30pm)",
-        evening: "Evening (After Asr - 11pm)",
-        fullday: "Beverages",
-        fridayspecial: "Friday Special"
+        morning: "Morning  الصباح",
+        maincourse: "Main Course  الوجبة الرئيسية",
+        evening: "Evening  المساء",
+        fullday: "Beverages  المشروبات",
+        fridayspecial: "Friday Special  العرض الخاص بيوم الجمعة",
       };
 
       function renderTabs() {
@@ -163,7 +172,9 @@
         tabsContainer.innerHTML = keys
           .map(
             (key, index) => `
-              <div class="tab ${index === 0 ? "active" : ""}" data-meal="${key}">
+              <div class="tab ${
+                index === 0 ? "active" : ""
+              }" data-meal="${key}">
                 ${displayNames[key] || key}
               </div>`
           )
@@ -189,30 +200,53 @@
         }
 
         const headerHTML = `
-          <div class="menu-header">
-            <span>Dish</span>
-            <span>Price (in SAR)</span>
-          </div>`;
+    <div class="menu-header">
+      <span class="col-name">Dishes</span>
+      <span class="col-price">Price (in SAR) / السعر (ر.س)</span>
+      <span class="col-calories">Calories / سعره حرارية</span>
+      <span class="col-arabic"> الأطباق</span>
+    </div>`;
 
-        const sectionsHTML = sections
+        content.innerHTML = sections
           .map((section) => {
-            const noteHTML = section.note
-              ? `<div class="note">${section.note}</div>`
+            const timingHTML = section.timing
+              ? `<div class="note"><strong>${section.timing}</strong></div>` +
+                (section.timing_ar
+                  ? `<div class="note"><strong>${section.timing_ar}</strong></div>`
+                  : "")
               : "";
+
+            const noteHTML = section.note
+              ? `<div class="note">${section.note}</div>` +
+                (section.note_ar
+                  ? `<div class="note">${section.note_ar}</div>`
+                  : "")
+              : "";
+
             const itemsHTML = `
-              <ul>
-                ${section.items
-                  .map(
-                    (item) =>
-                      `<li><strong>${item.name}</strong><span>${item.price}</span></li>`
-                  )
-                  .join("")}
-              </ul>`;
-            return `<div class="menu-section">${noteHTML}${itemsHTML}</div>`;
+        <ul>
+          ${section.items
+            .map(
+              (item) => `
+                <li>
+                  <span class="col-name">${item.name}</span>
+                  <span class="col-price">${item.price}</span>
+                  <span class="col-calories">${item.calories}</span>
+                  <span class="col-arabic">${item.arabic}</span>
+                </li>`
+            )
+            .join("")}
+        </ul>`;
+
+            return `
+        <div class="menu-section">
+          ${timingHTML}
+          ${noteHTML}
+          ${headerHTML}
+          ${itemsHTML}
+        </div>`;
           })
           .join("");
-
-        content.innerHTML = headerHTML + sectionsHTML;
       }
 
       window.addEventListener("DOMContentLoaded", () => {
