@@ -1,28 +1,8 @@
 {
-  "name": "Bella Vista Restaurant Menu",
-  "short_name": "Bella Vista",
-  "description": "Authentic Italian Cuisine Menu - Access offline anytime",
-  "scope": "/",
-  "start_url": "/",
+  "name": "My Restaurant Menu",
+  "short_name": "Menu",
+  "start_url": "/index.html",
   "display": "standalone",
-  "orientation": "portrait-primary",
-  "background_color": "#667eea",
-  "theme_color": "#667eea",
-  "categories": ["food", "restaurant", "dining"],
-  "lang": "en",
-  "dir": "ltr",
-  "icons": [
-    {
-      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23667eea;%7D.cls-2%7Bfill:%23fff;%7D%3C/style%3E%3C/defs%3E%3Ccircle class='cls-1' cx='96' cy='96' r='96'/%3E%3Cpath class='cls-2' d='M130,70H62a6,6,0,0,0-6,6v40a6,6,0,0,0,6,6h68a6,6,0,0,0,6-6V76A6,6,0,0,0,130,70ZM124,110H68V82h56Z'/%3E%3Cpath class='cls-2' d='M96,95a3,3,0,0,0-3,3v8a3,3,0,0,0,6,0V98A3,3,0,0,0,96,95Z'/%3E%3Cpath class='cls-2' d='M80,95a3,3,0,0,0-3,3v8a3,3,0,0,0,6,0V98A3,3,0,0,0,80,95Z'/%3E%3Cpath class='cls-2' d='M112,95a3,3,0,0,0-3,3v8a3,3,0,0,0,6,0V98A3,3,0,0,0,112,95Z'/%3E%3C/svg%3E",
-      "sizes": "192x192",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23667eea;%7D.cls-2%7Bfill:%23fff;%7D%3C/style%3E%3C/defs%3E%3Ccircle class='cls-1' cx='256' cy='256' r='256'/%3E%3Cpath class='cls-2' d='M346.67,186.67H165.33a16,16,0,0,0-16,16v106.66a16,16,0,0,0,16,16H346.67a16,16,0,0,0,16-16V202.67A16,16,0,0,0,346.67,186.67ZM330.67,293.33H181.33V218.67H330.67Z'/%3E%3Cpath class='cls-2' d='M256,253.33a8,8,0,0,0-8,8v21.34a8,8,0,0,0,16,0V261.33A8,8,0,0,0,256,253.33Z'/%3E%3Cpath class='cls-2' d='M213.33,253.33a8,8,0,0,0-8,8v21.34a8,8,0,0,0,16,0V261.33A8,8,0,0,0,213.33,253.33Z'/%3E%3Cpath class='cls-2' d='M298.67,253.33a8,8,0,0,0-8,8v21.34a8,8,0,0,0,16,0V261.33A8,8,0,0,0,298.67,253.33Z'/%3E%3C/svg%3E",
-      "sizes": "512x512",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
-    }
-  ]
+  "background_color": "#ffffff",
+  "theme_color": "#333333"
 }
