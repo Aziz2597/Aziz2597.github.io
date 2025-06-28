@@ -13,7 +13,7 @@ window.MENU_DATA = {
           { name: "Alu Palak", price: "3", calories: "١٨٠", arabic: "ألو بالسبانخ" },
           { name: "Alu Paratha", price: "3", calories: "٢٢٠", arabic: "ألو باراثا" },
           { name: "Omlet (Double Egg)", price: "6", calories: "١٨٠", arabic: "بيض" },
-          { name: "Extra Roti", price: "1", calories: "١٢٠", arabic: "روتي" }
+          { name: "Roti", price: "1", calories: "١٢٠", arabic: "روتي" }
         ]
       }
     ]
@@ -39,12 +39,12 @@ window.MENU_DATA = {
           { name: "Keema Ghotala", price: "13", calories: "٣٨٠", arabic: "قيمة غوتالا" },
           { name: "Keema Fry", price: "12", calories: "٣٧٠", arabic: "قيمة مقلية" },
           { name: "Alu Keema", price: "12", calories: "٣٣٠", arabic: "قيمة بالبطاطس" },
-          { name: "Dal Gosht", price: "12", calories: "٢٨٠", arabic: "لحم بعدس" },
+          { name: "Dal Gosht", price: "13", calories: "٢٨٠", arabic: "لحم بعدس" },
           { name: "Paya Fry", price: "12", calories: "٣٠٠", arabic: "بايا مقلية" },
           { name: "Bheja Fry", price: "12", calories: "٣٥٠", arabic: "دماغ مقلية" },
           { name: "Dal Fry", price: "12", calories: "٢٧٠", arabic: "عدس مقلي" },
-          { name: "Extra Dal", price: "5", calories: "١٠٠", arabic: "عدس إضافي" },
-          { name: "Extra Roti", price: "1", calories: "١٢٠", arabic: "روتي إضافي" }
+          { name: "Dal", price: "5", calories: "١٠٠", arabic: "عدس إضافي" },
+          { name: "Roti", price: "1", calories: "١٢٠", arabic: "روتي إضافي" }
         ]
       }
     ]

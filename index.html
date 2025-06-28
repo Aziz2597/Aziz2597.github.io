@@ -3,8 +3,13 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Restaurant Menu</title>
+    <title>بوفيه منيير</title>
     <link rel="manifest" href="manifest.json" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Playfair+Display:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
     <style>
       :root {
         --brand-green: #154734;
@@ -25,24 +30,39 @@
       }
 
       header {
-  background: var(--brand-green);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.8rem 0;
-}
+        background: var(--brand-green);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0.8rem 0;
+      }
+      .header-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
 
-header img {
-  width: 100%;
-  max-width: 440px;
-  height: auto;
-  object-fit: contain;
-  display: block;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 0.3rem;
-}
+      .phone-text {
+        font-family: "Playfair Display", serif;
+        font-size: 1rem;
+        text-align: center;
+        color: var(--brand-gold);
+        margin-top: 1.2rem;
+      }
+      .phone-text .arabic {
+        font-family: "Amiri", serif;
+      }
 
+      header img {
+        width: 100%;
+        max-width: 440px;
+        height: auto;
+        object-fit: contain;
+        display: block;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        padding: 0.3rem;
+      }
 
       main {
         padding: 2rem 1rem;
@@ -53,6 +73,11 @@ header img {
       .menu-wrapper {
         width: 100%;
         max-width: 500px;
+      }
+      .highlight {
+        background-color: #fff9c4; /* Light yellow */
+        border-radius: 4px;
+        padding: 2px 4px;
       }
 
       .note {
@@ -149,8 +174,14 @@ header img {
   </head>
   <body>
     <header>
-      <img src="assets/logo.jpg" alt="Logo" />
+      <div class="header-inner">
+        <img src="assets/logo.jpg" alt="Logo" />
+        <div class="phone-text">
+          Phone: 0542809750 / <span class="arabic">الهاتف: ٠٥٤٢٨٠٩٧٥٠</span>
+        </div>
+      </div>
     </header>
+
     <main>
       <div class="menu-wrapper">
         <h1>Menu / القائمة</h1>
@@ -222,26 +253,28 @@ header img {
               : "";
 
             const noteHTML = section.note
-              ? `<div class="note">${section.note}</div>` +
+              ? `<div class="note highlight">${section.note}</div>` +
                 (section.note_ar
-                  ? `<div class="note">${section.note_ar}</div>`
+                  ? `<div class="note highlight">${section.note_ar}</div>`
                   : "")
               : "";
 
             const itemsHTML = `
-        <ul>
-          ${section.items
-            .map(
-              (item) => `
-                <li>
-                  <span class="col-name">${item.name}</span>
-                  <span class="col-price">${item.price}</span>
-                  <span class="col-calories">${item.calories}</span>
-                  <span class="col-arabic">${item.arabic}</span>
-                </li>`
-            )
-            .join("")}
-        </ul>`;
+  <ul>
+    ${section.items
+      .map(
+        (item) => `
+          <li>
+            <span class="col-name ${
+              ["Dal", "Roti"].includes(item.name) ? "highlight" : ""
+            }">${item.name}</span>
+            <span class="col-price">${item.price}</span>
+            <span class="col-calories">${item.calories}</span>
+            <span class="col-arabic">${item.arabic}</span>
+          </li>`
+      )
+      .join("")}
+  </ul>`;
 
             return `
         <div class="menu-section">
