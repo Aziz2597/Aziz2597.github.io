@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.bufiyamunaiyyar.menutwa",
+      "sha256_cert_fingerprints": [
+        "4B:03:D0:C5:E2:3B:17:AC:B4:7F:A5:1A:B8:93:DA:41:BE:5B:3C:D4:A7:70:89:36:6A:FF:A7:C2:97:20:2D:06"
+      ]
+    }
+  }
+]

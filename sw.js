@@ -5,26 +5,39 @@ const ASSETS = [
   './menu-data.js',
   './assets/logo.png'
 ];
+
+// Install and cache required assets
 self.addEventListener("install", (event) => {
-  // Force immediate activation
-  self.skipWaiting();
+  event.waitUntil(
+    caches.open(CACHE).then((cache) => {
+      return cache.addAll(ASSETS);
+    })
+  );
+  self.skipWaiting(); // Activate immediately
 });
 
+// Activate and clear old caches
 self.addEventListener("activate", (event) => {
-  // Delete all old caches if any exist
   event.waitUntil(
     caches.keys().then((keys) =>
-      Promise.all(keys.map((key) => caches.delete(key)))
+      Promise.all(keys.map((key) => {
+        if (key !== CACHE) return caches.delete(key);
+      }))
     )
   );
-  self.clients.claim();
+  self.clients.claim(); // Control open clients
 });
 
-// Always fetch from network (never use cache)
+// Fetch: Try network first, fallback to cache
 self.addEventListener("fetch", (event) => {
   event.respondWith(
     fetch(event.request).catch(() =>
-      new Response("Offline or not found", { status: 503 })
+      caches.match(event.request).then((res) => {
+        return res || new Response("Offline or not found", {
+          status: 503,
+          statusText: "Offline or not found"
+        });
+      })
     )
   );
 });
