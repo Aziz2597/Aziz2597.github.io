@@ -6,12 +6,12 @@ window.MENU_DATA = {
         timing: "Available from Fajr till Zuhr / متاح من الفجر حتى الظهر",
         note: "(Includes 1 Roti) / (يشمل 1 روتي)",
         items: [
-          { name: "Paya", price: "6", calories: "٢٥٠", arabic: "بايا" },
+          { name: "Paya", price: "6", calories: "٣٢٠", arabic: "بايا" },
           { name: "Keema", price: "4", calories: "٣٤٥", arabic: "خيـمة" },
           { name: "Bheja", price: "6", calories: "٢٧٠", arabic: "بيـجا" },
           { name: "Gurda", price: "6", calories: "٢٠٠", arabic: "جوردا" },
           { name: "Alu Palak", price: "3", calories: "١٨٠", arabic: "ألو بالسبانخ" },
-          { name: "Alu Paratha", price: "3", calories: "٢١٠", arabic: "ألو باراثا" },
+          { name: "Alu Paratha", price: "3", calories: "٢٢٠", arabic: "ألو باراثا" },
           { name: "Omlet (Double Egg)", price: "6", calories: "١٨٠", arabic: "بيض" },
           { name: "Extra Roti", price: "1", calories: "١٢٠", arabic: "روتي" }
         ]
@@ -25,7 +25,7 @@ window.MENU_DATA = {
         note: "(Includes Rice & 2 Rotis & Dal) / يشمل الأرز و 2 روتي و عدس",
         items: [
           { name: "Mutton Curry", price: "12", calories: "٣٩٨", arabic: "موتون كاري" },
-          { name: "Chana Masala", price: "12", calories: "٢٦٤", arabic: "شانا ماسالا" },
+          { name: "Chana Masala", price: "12", calories: "٣٢٦", arabic: "شانا ماسالا" },
           { name: "Kadhai Gosht", price: "12", calories: "٣٦٠", arabic: "قدر لحم" },
           { name: "Palak Gosht", price: "13", calories: "٣٢٠", arabic: "شانا لحم" },
           { name: "Chana Gosht", price: "13", calories: "٣٣٠", arabic: "شانا لحم" },
@@ -54,8 +54,8 @@ window.MENU_DATA = {
       {
         timing: "Available from 4:00 PM till 11:00 PM / متاح من الساعة 4:00 مساءً حتى 11:00 مساءً",
         items: [
-          { name: "Shami Kabab", price: "4", calories: "١٦٥", arabic: "كباب شامي" },
-          { name: "Samosa (3 Pieces)", price: "2", calories: "٢٤٠", arabic: "سمبوسة (3 قطع)" },
+          { name: "Shami Kabab", price: "4", calories: "٤١٥", arabic: "كباب شامي" },
+          { name: "Samosa (3 Pieces)", price: "2", calories: "٢٦٠", arabic: "سمبوسة (3 قطع)" },
           { name: "Bhajiya (5 Pieces)", price: "2", calories: "٢٠٠", arabic: "باجيا (5 قطع)" },
           { name: "Namakpara (1 Plate)", price: "2", calories: "١٨٠", arabic: "نمك بارا (طبق)" },
           { name: "Jalebi (1 Plate)", price: "2", calories: "٢٢٠", arabic: "جليبي (طبق)" },
@@ -69,7 +69,7 @@ window.MENU_DATA = {
     sections: [
       {
         items: [
-          { name: "Milk Tea", price: "1", calories: "١٢٠", arabic: "شاي بالحليب" },
+          { name: "Milk Tea", price: "1", calories: "١٠", arabic: "شاي بالحليب" },
           { name: "Black Tea", price: "1", calories: "٥", arabic: "شاي أسود" },
           { name: "Coffee", price: "2", calories: "١٠", arabic: "قهوة" }
         ]

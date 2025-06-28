@@ -6,13 +6,10 @@ const ASSETS = [
   './assets/logo.png'
 ];
 
-self.addEventListener('install', e => {
-  e.waitUntil(
-    caches.open(CACHE)
-      .then(cache => cache.addAll(ASSETS))
-      .then(() => self.skipWaiting())
-  );
+self.addEventListener("install", (event) => {
+  self.skipWaiting();
 });
+
 
 self.addEventListener('fetch', e => {
   e.respondWith(
