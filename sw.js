@@ -5,18 +5,26 @@ const ASSETS = [
   './menu-data.js',
   './assets/logo.png'
 ];
-
 self.addEventListener("install", (event) => {
+  // Force immediate activation
   self.skipWaiting();
 });
 
+self.addEventListener("activate", (event) => {
+  // Delete all old caches if any exist
+  event.waitUntil(
+    caches.keys().then((keys) =>
+      Promise.all(keys.map((key) => caches.delete(key)))
+    )
+  );
+  self.clients.claim();
+});
 
-self.addEventListener('fetch', e => {
-  e.respondWith(
-    caches.match(e.request).then(cached => {
-      return cached || fetch(e.request).catch(() =>
-        new Response("Offline or not found", { status: 503 })
-      );
-    })
+// Always fetch from network (never use cache)
+self.addEventListener("fetch", (event) => {
+  event.respondWith(
+    fetch(event.request).catch(() =>
+      new Response("Offline or not found", { status: 503 })
+    )
   );
 });
